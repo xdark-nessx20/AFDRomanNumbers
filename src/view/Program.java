@@ -2,8 +2,7 @@ package view;
 
 import model.Automaton;
 
-import javax.swing.UIManager;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.awt.Color;
 
 public class Program {
@@ -17,7 +16,7 @@ public class Program {
 
     public static void main(String[] args) {
         Automaton afd = new Automaton();
-
+        Icon gifclose = new ImageIcon(Program.class.getResource("/close.gif"));
         while(true){
             String num = JOptionPane.showInputDialog(null,
                 "Type a roman number between I and L: \nDon't write if you wanna exit", "AFD Roman Nums",
@@ -27,13 +26,16 @@ public class Program {
             String afdAnswer = afd.verify(num);
             processAnswer(afdAnswer);
         }
-        JOptionPane.showMessageDialog(null, "Closing...", "AFD Roman Nums",
-            JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Closing... Press OK", "AFD Roman Nums",
+                JOptionPane.PLAIN_MESSAGE, gifclose);
 
     }
 
     private static void processAnswer(String answer){
-        int messageType = (answer.contains("Valid"))? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE;
-        JOptionPane.showMessageDialog(null, answer, "AFD Roman Nums", messageType);
+        // abrir el gif correcto
+        String fileName = (answer.contains("Valid")) ? "/bien.gif" : "/mal.gif";
+        Icon gif = new ImageIcon(Program.class.getResource(fileName));
+
+        JOptionPane.showMessageDialog(null, answer, "AFD Roman Nums", JOptionPane.PLAIN_MESSAGE, gif);
     }
 }
