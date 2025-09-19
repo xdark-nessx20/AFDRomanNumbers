@@ -6,11 +6,11 @@ public class Automaton {
     private State currentState;
 
     public Automaton() {
-        this.currentState = State.INI;
+        this.currentState = State.getInitialState();
     }
 
     public String verify(String number){
-        number = number.trim().replace(" ", "").toUpperCase();
+        number = number.replace(" ", "").toUpperCase();
         int sum = 0;
 
         try {

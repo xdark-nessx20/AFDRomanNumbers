@@ -2,14 +2,14 @@ package model;
 
 public enum State {
     INI(false),
-    VO(true),
-    EWT(true),
-    NM(true),
-    VF(true),
-    VS(true),
-    OX(true),
-    TX(true),
-    JOF(true),
+    VO(true), //ValueOne
+    EWT(true), //EndWIthTwo
+    NM(true), //NoMore
+    VF(true), //ValueFive
+    VS(true), //ValueSix
+    OX(true), //OneX
+    TX(true), //TwoX
+    JOF(true), //JustOneOrFive
     ERROR(false)
     ;
 
@@ -30,7 +30,7 @@ public enum State {
     public State nextState(char romanNumber){
         return switch (this){
             case INI -> nextStateFromINI(romanNumber);
-            case VO -> nextStateFromVU(romanNumber);
+            case VO -> nextStateFromVO(romanNumber);
             case EWT -> nextStateFromEWT(romanNumber);
             case VF -> nextStateFromVF(romanNumber);
             case VS -> nextStateFromVS(romanNumber);
@@ -51,7 +51,7 @@ public enum State {
         };
     }
 
-    private State nextStateFromVU(char romanNumber){
+    private State nextStateFromVO(char romanNumber){
         return switch (romanNumber) {
             case 'I' -> EWT;
             case 'V', 'X' -> NM;
